@@ -1,4 +1,5 @@
-// $Id: main.cpp,v 1.3 2019-05-15 18:02:12-07 - - $
+// dcampagn - Dean Campagnolo
+// aswoiski - Aaron Swoiskin
 
 #include <fstream>
 #include <iostream>
@@ -79,7 +80,6 @@ void scan_options (int argc, char** argv) {
 // Main function.  Iterate over files if given, use cin if not.
 //
 int main (int argc, char** argv) {
-   cout<<"hello world"<<endl;
    sys_info::execname (argv[0]);
    scan_options (argc, argv);
    vector<string> args (&argv[optind], &argv[argc]);
