@@ -65,7 +65,7 @@ void text::draw (const vertex& center, const rgbcolor& color, bool border) const
     DEBUGF ('d', this << "(" << center << ",");
     glColor3ubv(color.ubvec);
     glRasterPos2f (center.xpos, center.ypos);
-    auto newtext = reinterpret_cast<const unsigned char*> (textdata.c_str);
+    auto newtext = reinterpret_cast<const unsigned char*> (textdata.c_str());
     glutBitmapString (glut_bitmap_font, newtext);
 }
 
