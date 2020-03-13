@@ -186,9 +186,8 @@ shape_ptr interpreter::make_polygon (param begin, param end) {
 
 shape_ptr interpreter::make_rectangle (param begin, param end) {
     DEBUGF ('f', range (begin, end));
-    GLfloat width = from_string<GLfloat> (begin[0]);
-    GLfloat length = from_string<GLfloat> (begin[1]);
-    return make_shared<rectangle> (width,length );
+    return make_shared<rectangle> (from_string<GLfloat> (begin[0]),
+                                    from_string<GLfloat> (begin[1]));
 }
 
 shape_ptr interpreter::make_square (param begin, param end) {

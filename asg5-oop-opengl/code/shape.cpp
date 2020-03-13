@@ -7,6 +7,7 @@ using namespace std;
 #include "graphics.h"
 #include "shape.h"
 #include "util.h"
+#include "math.h"
 
 static unordered_map<void*,string> fontname {
     {GLUT_BITMAP_8_BY_13       , "Fixed-8x13"    },
@@ -51,18 +52,12 @@ polygon::polygon (const vertex_list& vertices): vertices(vertices) {
 }
 triangle::triangle (const vertex_list& v) : polygon(v){
     DEBUGF ('c', this);
-    }
-right_triangle::right_triangle (GLfloat width, GLfloat height):
-polygon({{0.0,0.0}, {width, 0.0}, {0.0, height}}){
-   DEBUGF ('c', this << "(" << width << "," << height << ")");
 }
 
-isosceles::isosceles (GLfloat width, GLfloat height):
-polygon({{0.0,0.0}, {width, 0.0}, {width/2, height}}){
-   DEBUGF ('c', this << "(" << width << "," << height << ")");
-}
-
-equilateral::equilateral (GLfloat width): isosceles (width, width) {
+equilateral::equilateral (GLfloat width): 
+    triangle ({{-width/2, -((sqrt(3)/2)*width)/2}, 
+                {width/2, -((sqrt(3)/2)*width)/2}, 
+                {0, ((sqrt(3)/2)*width)/2}}) {
     DEBUGF ('c', this);
 
 }
