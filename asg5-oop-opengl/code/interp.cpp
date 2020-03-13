@@ -9,7 +9,6 @@ using namespace std;
 #include "debug.h"
 #include "interp.h"
 #include "shape.h"
-#include "shape.cpp"
 #include "util.h"
 #include "graphics.h"
 
@@ -100,7 +99,7 @@ shape_ptr interpreter::make_shape (param begin, param end) {
 
 shape_ptr interpreter::make_text (param begin, param end) {
     DEBUGF ('f', range (begin, end));
-    auto the_font = fontcode.find(begin[0])->second;
+    auto the_font = shape.fontcode.find(begin[0])->second;
     ++begin;
     string words = "";
     while(begin != end){
