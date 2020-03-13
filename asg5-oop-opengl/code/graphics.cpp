@@ -21,7 +21,7 @@ object::object( shared_ptr <shape> a, vertex& c, rgbcolor& col, bool b){
 pshape = a;
 center = c;
 color = col;
-bor = b;
+border = b;
 
 }
 
@@ -46,23 +46,13 @@ void window::entry (int mouse_entered) {
 // Called to display the objects in the window.
 void window::display() {
     glClear (GL_COLOR_BUFFER_BIT);
-   //  glEnable(GL_DEPTH_TEST);
-  //Set the matrix mode to deal with your 'camera'
- // glMatrixMode(GL_PROJECTION);
- // glLoadIdentity(); 
 
-  //Viewpoint:
-    //Left, right, bottom, top, near, far    
- // glOrtho(-0.0, 4.0, -0.0, 4.0, -2.0, 500.0); 
-  
-  //switch back to dealing with 'what' you are drawing
-  //glMatrixMode(GL_MODELVIEW);
     size_t cur = 0;
     for (auto& object: window::objects) {
     if(cur == window::selected_obj){
-        object.bor = true;
+        object.border = true;
     }else{
-        object.bor = false;
+        object.border = false;
     }
     object.draw();
     cur+=1;
