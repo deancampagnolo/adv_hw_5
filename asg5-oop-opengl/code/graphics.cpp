@@ -19,7 +19,8 @@ vector<object> window::objects;
 size_t window::selected_obj = 0;
 mouse window::mus;
 
-object::object( shared_ptr <shape> pshape_, vertex& center_, rgbcolor& color_, bool border_){
+object::object( shared_ptr <shape> pshape_, vertex& center_,
+ rgbcolor& color_, bool border_){
     pshape = pshape_;
     center = center_;
     color = color_;
@@ -127,7 +128,8 @@ void window::reshape (int width_, int height_) {
 
 void window::keyboard (GLubyte key, int x, int y) {
     enum {BS = 8, TAB = 9, ESC = 27, SPACE = 32, DEL = 127};
-    DEBUGF ('g', "key=" << unsigned (key) << ", x=" << x << ", y=" << y);
+    DEBUGF ('g', "key=" << unsigned (key) << ", x=" << x <<
+     ", y=" << y);
     window::mus.set (x, y);
     switch (key) {
     case 'Q': case 'q': case ESC:
