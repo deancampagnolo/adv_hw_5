@@ -9,6 +9,7 @@ using namespace std;
 #include "debug.h"
 #include "interp.h"
 #include "shape.h"
+#include "shape.cpp"
 #include "util.h"
 #include "graphics.h"
 
