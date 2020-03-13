@@ -57,6 +57,7 @@ void interpreter::do_define (param begin, param end) {
 
 
 void interpreter::do_draw (param begin, param end) {
+   if (end - begin != 4) throw runtime_error ("syntax error");
    cout << "draw" << endl;
    DEBUGF ('f', range (begin, end));
    if (end - begin != 4) throw runtime_error ("syntax error");
