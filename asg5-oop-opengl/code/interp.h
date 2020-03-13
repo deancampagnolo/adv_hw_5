@@ -20,10 +20,12 @@ public:
     void interpret (const parameters&);
     interpreter() {}
     ~interpreter();
+
+    private:
     interpreter (const interpreter&) = delete;
     interpreter& operator= (const interpreter&) = delete;
 
-    private:
+
     using interpreterfn = void (*) (param, param);
     using factoryfn = shape_ptr (*) (param, param);
 
