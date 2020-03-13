@@ -1,4 +1,4 @@
-#include <map>
+#include <unordered_map>
 #include <memory>
 #include <string>
 #include <vector>
@@ -12,14 +12,14 @@ using namespace std;
 #include "util.h"
 #include "graphics.h"
 
-map<string,interpreter::interpreterfn> interpreter::interp_map {
+unordered_map<string,interpreter::interpreterfn> interpreter::interp_map {
     {"define" , &interpreter::do_define },
     {"draw"   , &interpreter::do_draw   },
     {"border" , &interpreter::do_border },
     {"moveby" , &interpreter::do_moveby },
 };
 
-map<string,interpreter::factoryfn> interpreter::factory_map {
+unordered_map<string,interpreter::factoryfn> interpreter::factory_map {
     {"text"     , &interpreter::make_text     },
     {"ellipse"  , &interpreter::make_ellipse  },
     {"circle"   , &interpreter::make_circle   },
@@ -27,8 +27,6 @@ map<string,interpreter::factoryfn> interpreter::factory_map {
     {"rectangle", &interpreter::make_rectangle},
     {"square"   , &interpreter::make_square   },
     {"triangle" , &interpreter::make_triangle },
-    {"right_triangle" , &interpreter::make_righttriangle },
-    {"isosceles" , &interpreter::make_isosceles },
     {"equilateral" , &interpreter::make_equilateral },
     {"diamond"   , &interpreter::make_diamond },
 };
@@ -62,7 +60,6 @@ void interpreter::do_draw (param begin, param end) {
     DEBUGF ('f', range (begin, end));
     if (end - begin != 4) throw runtime_error ("syntax error");
     string name = begin[1];
-
     shape_map::const_iterator itor = objmap.find (name);
     if (itor == objmap.end()) {
         throw runtime_error (name + ": no such shape");

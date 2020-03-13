@@ -1,10 +1,9 @@
-// $Id: interp.h,v 1.13 2014-07-22 20:03:19-07 - - $
 
 #ifndef __INTERP_H__
 #define __INTERP_H__
 
 #include <iostream>
-#include <map>
+#include <unordered_map>
 #include <vector>
 using namespace std;
 
@@ -14,23 +13,22 @@ using namespace std;
 
 class interpreter {
 public:
-    using shape_map = map<string,shape_ptr>;
+    using shape_map = unordered_map<string,shape_ptr>;
     using parameters = vector<string>;
     using param = parameters::const_iterator;
     using range = pair<param,param>;
     void interpret (const parameters&);
     interpreter() {}
     ~interpreter();
-
-private:
     interpreter (const interpreter&) = delete;
     interpreter& operator= (const interpreter&) = delete;
 
+    private:
     using interpreterfn = void (*) (param, param);
     using factoryfn = shape_ptr (*) (param, param);
 
-    static map<string,interpreterfn> interp_map;
-    static map<string,factoryfn> factory_map;
+    static unordered_map<string,interpreterfn> interp_map;
+    static unordered_map<string,factoryfn> factory_map;
     static shape_map objmap;
 
     static void do_define (param begin, param end);
@@ -47,10 +45,9 @@ private:
     static shape_ptr make_square (param begin, param end);
     static shape_ptr make_line (param begin, param end);
     static shape_ptr make_triangle (param begin, param end);
-    static shape_ptr make_righttriangle (param begin, param end);
-    static shape_ptr make_isosceles (param begin, param end);
     static shape_ptr make_diamond (param begin, param end);
     static shape_ptr make_equilateral (param begin, param end);
 };
 
 #endif
+
