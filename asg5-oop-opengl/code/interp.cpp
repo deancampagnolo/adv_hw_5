@@ -103,7 +103,7 @@ shape_ptr interpreter::make_text (param begin, param end) {
     ++begin;
     string words = "";
     while(begin != end){
-        words.push_back(*begin + " ");
+        words.append(*begin + " ");
         ++begin;
     }
     return make_shared<text> (the_font, words);
