@@ -99,14 +99,14 @@ shape_ptr interpreter::make_shape (param begin, param end) {
 
 shape_ptr interpreter::make_text (param begin, param end) {
     DEBUGF ('f', range (begin, end));
-    auto myFont = fontcode.find(begin[0])->second;
+    auto the_font = fontcode.find(begin[0])->second;
     ++begin;
     string words = "";
     while(begin != end){
         words.push_back(*begin + " ");
         ++begin;
     }
-    return make_shared<text> (itor->second, words);
+    return make_shared<text> (the_font, words);
 }
 
 shape_ptr interpreter::make_ellipse (param begin, param end) {
