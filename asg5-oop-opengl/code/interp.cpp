@@ -138,11 +138,11 @@ shape_ptr interpreter::make_triangle (param begin, param end){
     int y_avg = y_sum/3;
 
     for (auto vert : points) {
-        vert.x -= x_avg;
-        vert.y -= y_avg;
+        vert.xpos -= x_avg;
+        vert.ypos -= y_avg;
     }
 
-    return make_shared<triangle> (polyPoints);
+    return make_shared<triangle> (points);
 }
 //diamond
 shape_ptr interpreter::make_diamond (param begin, param end) {
