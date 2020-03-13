@@ -1,5 +1,4 @@
-// dcampagn - Dean Campagnolo
-// aswoiski - Aaron Swoiskin
+
 
 #include <iostream>
 using namespace std;

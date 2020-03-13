@@ -24,24 +24,8 @@ private:
     rgbcolor color;
 public:
     object(shared_ptr<shape> a, vertex& c, rgbcolor& col, bool border);
-    void draw() { pshape->draw (center, color, border); }
-    void move (GLfloat delta_x, GLfloat delta_y, int w, int h) {
-        center.xpos += delta_x;
-        center.ypos += delta_y;
-        
-        GLfloat g_w = w;
-        GLfloat g_h = h;
-        if (center.xpos > g_w){
-            center.xpos = 0.0;
-        }else if (center.xpos < 0.0){
-                center.xpos = g_w;
-        }
-        if (center.ypos > g_h){
-            center.ypos = 0.0;
-        } else if (center.ypos < 0.0){
-                  center.ypos = g_h;
-        }
-    }
+    void draw();
+    void move (GLfloat delta_x, GLfloat delta_y, int w, int h);
     bool border;
 };
 
