@@ -51,9 +51,9 @@ void interpreter::do_define (param begin, param end) {
    cout << "define" << endl;
    DEBUGF ('f', range (begin, end));
    string name = *begin;
-   shape_ptr = make_shape (++begin, end);
-   objmap.emplace (name, shape_ptr);
-   object the_object(name, pointer);
+   shape_ptr ptr = make_shape (++begin, end);
+   objmap.emplace (name, ptr);
+   object the_object(name, ptr);
    window::push_back(the_object);
 }
 
