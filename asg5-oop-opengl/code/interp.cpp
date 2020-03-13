@@ -48,13 +48,16 @@ void interpreter::interpret (const parameters& params) {
 }
 
 void interpreter::do_define (param begin, param end) {
+   cout << "define" << endl;
    DEBUGF ('f', range (begin, end));
    string name = *begin;
    objmap.emplace (name, make_shape (++begin, end));
+   
 }
 
 
 void interpreter::do_draw (param begin, param end) {
+   cout << "draw" << endl;
    DEBUGF ('f', range (begin, end));
    if (end - begin != 4) throw runtime_error ("syntax error");
    string name = begin[1];
