@@ -74,7 +74,7 @@ void mouse::draw() {
         glutBitmapString (font, ubytes);
     }
 }
-}
+
 // Executed when window system signals to shut down.
 void window::close() {
     DEBUGF ('g', sys_info::execname() << ": exit ("
