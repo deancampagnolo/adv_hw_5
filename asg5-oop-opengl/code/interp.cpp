@@ -100,11 +100,9 @@ shape_ptr interpreter::make_shape (param begin, param end) {
 shape_ptr interpreter::make_text (param begin, param end) {
     DEBUGF ('f', range (begin, end));
     auto the_font = fontcode.find(begin[0])->second;
-    ++begin;
     string words = "";
-    while(begin != end){
+    while(++begin != end){
         words.append(*begin + " ");
-        ++begin;
     }
     return make_shared<text> (the_font, words);
 }
