@@ -51,10 +51,10 @@ void interpreter::do_define (param begin, param end) {
    cout << "define" << endl;
    DEBUGF ('f', range (begin, end));
    string name = *begin;
-   shape_ptr ptr = make_shape (++begin, end);
-   objmap.emplace (name, ptr);
-   object the_object(name, ptr);
-   window::push_back(the_object);
+   shape_ptr pointer = make_shape(++begin, end);
+   objmap.emplace(name, pointer);
+   object new_object(name, pointer);
+   window::push_back(new_object);
 }
 
 
