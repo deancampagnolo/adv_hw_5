@@ -164,11 +164,11 @@ shape_ptr interpreter::make_polygon (param begin, param end) {
     float x_sum = 0.0, y_sum = 0.0, total = 0.0;
     while(begin != end){
         vertex temp;
-        x_sum += from_string<GLfloat> (*itor);
-        temp.xpos = from_string<GLfloat> (*itor);
+        x_sum += from_string<GLfloat> (*begin);
+        temp.xpos = from_string<GLfloat> (*begin);
         ++itor;
-        y_sum += from_string<GLfloat> (*itor);
-        temp.ypos = from_string<GLfloat> (*itor);
+        y_sum += from_string<GLfloat> (*begin);
+        temp.ypos = from_string<GLfloat> (*begin);
         ++itor;
         total += 1.0;
         points.push_back(temp);
