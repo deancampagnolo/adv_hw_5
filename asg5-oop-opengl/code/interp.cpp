@@ -64,11 +64,10 @@ void interpreter::do_draw (param begin, param end) {
     if (itor == objmap.end()) {
         throw runtime_error (name + ": no such shape");
     }
+    rgbcolor color {begin[0]};
     vertex where {from_string<GLfloat> (begin[2]),
         from_string<GLfloat> (begin[3])};
-    rgbcolor color {begin[0]};
-    object nO (itor->second, where, color, false);
-    window::push_back(nO);//draw (where, color);
+    window::push_back (object (itor->second, where, color, false));
 }
 void interpreter::do_moveby (param begin, param end) {
     DEBUGF ('f', range (begin, end));
