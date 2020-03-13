@@ -93,7 +93,7 @@ void ellipse::draw (const vertex& center, const rgbcolor& color, bool border) co
         for (float theta = 0; theta <= 2 * M_PI; theta += delta) {
             float xpos = width * cos (theta) + center.xpos;
             float ypos = height * sin (theta) + center.ypos;
-            glVertex2d (xpos, ypos);
+            glVertex2f(xpos, ypos);
         }   
         glEnd();
     }
@@ -104,7 +104,6 @@ void polygon::draw (const vertex& center, const rgbcolor& color, bool border) co
     glBegin (GL_POLYGON);
     glEnable(GL_LINE_SMOOTH);
     glColor3ubv (color.ubvec);
-
     for(auto vert : vertices) {
         glVertex2f (vert.xpos + center.xpos, vert.ypos + center.ypos);
     }
@@ -113,12 +112,11 @@ void polygon::draw (const vertex& center, const rgbcolor& color, bool border) co
         glLineWidth(window::thick);
         glBegin(GL_LINES);
         glEnable(GL_LINE_SMOOTH);
-        
         glColor3ubv (window::scolor.ubvec);
         for(auto vert : vertices){
-            glVertex2d (vert.xpos + center.xpos, vert.ypos + center.ypos);
+            glVertex2f (vert.xpos + center.xpos, vert.ypos + center.ypos);
         }
-        glVertex2d(vertices[0].xpos + center.xpos, vertices[0].ypos + center.ypos);
+        glVertex2f(vertices[0].xpos + center.xpos, vertices[0].ypos + center.ypos);
         glEnd();  
    }
 }
