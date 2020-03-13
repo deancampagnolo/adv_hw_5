@@ -1,0 +1,7 @@
+#!/bin/bash
+
+cd ../..
+git pull
+cd asg3-listmap-templates/code
+make
+./gdraw
