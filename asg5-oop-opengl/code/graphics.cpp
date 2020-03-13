@@ -134,22 +134,28 @@ void window::keyboard (GLubyte key, int x, int y) {
         window::close();
         break;
     case 'H': case 'h':
-        window::objects[window::selected_obj].move(-1*window::moveint,0,window::width,window::height);
+        window::objects[window::selected_obj]
+        .move(-1*window::moveint,0,window::width,window::height);
         break;
     case 'J': case 'j':
-        window::objects[window::selected_obj].move(0,-1*window::moveint, window::width, window::height);
+        window::objects[window::selected_obj]
+        .move(0,-1*window::moveint, window::width, window::height);
         break;
     case 'K': case 'k':
-        window::objects[window::selected_obj].move(0,window::moveint, window::width, window::height);
+        window::objects[window::selected_obj]
+        .move(0,window::moveint, window::width, window::height);
         break;
     case 'L': case 'l':
-        window::objects[window::selected_obj].move(window::moveint,0,window::width, window::height);
+        window::objects[window::selected_obj].
+        move(window::moveint,0,window::width, window::height);
         break;
     case 'N': case 'n': case SPACE: case TAB:
-        window::selected_obj = (window::selected_obj + 1) % window::objects.size();
+        window::selected_obj = (window::selected_obj + 1) %
+         window::objects.size();
         break;
     case 'P': case 'p': case BS:
-        window::selected_obj = (window::selected_obj + window::objects.size() - 1) % window::objects.size();
+        window::selected_obj = (window::selected_obj + 
+        window::objects.size() - 1) % window::objects.size();
         break;
     case '0': case '1': case '2': case '3': case '4':
     case '5': case '6': case '7': case '8': case '9':
@@ -168,10 +174,14 @@ void window::special (int key, int x, int y) {
     DEBUGF ('g', "key=" << key << ", x=" << x << ", y=" << y);
     window::mus.set (x, y);
     switch (key) {
-    case GLUT_KEY_LEFT: window::objects[window::selected_obj].move(-1*window::moveint,0,window::width,window::height); break;
-    case GLUT_KEY_DOWN: window::objects[window::selected_obj].move(0,-1*window::moveint,window::width,window::height); break;
-    case GLUT_KEY_UP: window::objects[window::selected_obj].move(0,window::moveint,window::width,window::height); break;
-    case GLUT_KEY_RIGHT: window::objects[window::selected_obj].move(window::moveint,0,window::width,window::height); break;
+    case GLUT_KEY_LEFT: window::objects[window::selected_obj]
+    .move(-1*window::moveint,0,window::width,window::height); break;
+    case GLUT_KEY_DOWN: window::objects[window::selected_obj]
+    .move(0,-1*window::moveint,window::width,window::height); break;
+    case GLUT_KEY_UP: window::objects[window::selected_obj]
+    .move(0,window::moveint,window::width,window::height); break;
+    case GLUT_KEY_RIGHT: window::objects[window::selected_obj]
+    .move(window::moveint,0,window::width,window::height); break;
     case GLUT_KEY_F1: window::selected_obj =0; break;
     case GLUT_KEY_F2: window::selected_obj =1; break;
     case GLUT_KEY_F3: window::selected_obj =2; break;
