@@ -84,7 +84,7 @@ square::square (GLfloat width): rectangle (width, width) {
 }
 
 void text::draw (const vertex& center, const rgbcolor& color, bool b) const {
-    DEBUGF ('d', this << "(" << center << "," << color << ")");
+    DEBUGF ('d', this << "(" << center << "," << b<< ")");
     
     glColor3ubv(color.ubvec);
     glRasterPos2f (center.xpos, center.ypos);
