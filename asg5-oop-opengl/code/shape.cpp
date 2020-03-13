@@ -61,69 +61,64 @@ square::square (GLfloat width): rectangle (width, width) {
     DEBUGF ('c', this);
 }
 
-void text::draw (const vertex& center, const rgbcolor& color, bool) const {
+void text::draw (const vertex& center, const rgbcolor& color, bool border) const {
     DEBUGF ('d', this << "(" << center << ",");
-    //FIXME
     glColor3ubv(color.ubvec);
     glRasterPos2f (center.xpos, center.ypos);
-    for (auto ch: textdata) glutBitmapCharacter (glut_bitmap_font, ch);
-    glutSwapBuffers();
+    auto newtext = reinterpret_cast<const unsigned char*> (textdata.c_str);
+    glutBitmapString (glut_bitmap_font, newtext);
 }
 
-void ellipse::draw (const vertex& center, const rgbcolor& color, bool b) const {
+void ellipse::draw (const vertex& center, const rgbcolor& color, bool border) const {
     DEBUGF ('d', this << "(" << center << "," << color << ")");
-    //FIXME
     glBegin (GL_POLYGON);
-   glEnable (GL_LINE_SMOOTH);
-   glColor3ubv (color.ubvec);
-   const float delta = 2 * M_PI / 32;
-   float width = dimension.xpos;
-   float height = dimension.ypos;
-   for (float theta = 0; theta < 2 * M_PI; theta += delta) {
-      float xposy = width * cos (theta) + center.xpos;
-      float yposy = height * sin (theta) + center.ypos;
-      glVertex2f (xposy, yposy);
-   }
-   glEnd();
-   if(b == true){
+    glEnable (GL_LINE_SMOOTH);
+    glColor3ubv (color.ubvec);
+    float delta = 2 * M_PI / 32;
+    float width = dimension.xpos;
+    float height = dimension.ypos;
+    for (float theta = 0; theta < 2 * M_PI; theta += delta) {
+        float xpos = width * cos (theta) + center.xpos;
+        float ypos = height * sin (theta) + center.ypos;
+        glVertex2f (xpos, ypos);
+    }
+    glEnd();
+    
+    if(border == true){
         glLineWidth(window::thick);
         glBegin(GL_LINES);
-        glEnable(GL_LINE_SMOOTH);
-        
+        glEnable(GL_LINE_SMOOTH);    
         glColor3ubv (window::scolor.ubvec);
         for (float theta = 0; theta < 2 * M_PI; theta += delta) {
-      float xposy = width * cos (theta) + center.xpos;
-      float yposy = height * sin (theta) + center.ypos;
-      glVertex2d (xposy, yposy);
-   }
-     glEnd();
-   }
+            float xposy = width * cos (theta) + center.xpos;
+            float yposy = height * sin (theta) + center.ypos;
+            glVertex2d (xposy, yposy);
+        }   
+        glEnd();
+    }
 }
 
-void polygon::draw (const vertex& center, const rgbcolor& color, bool b) const {
-    //FIXME
+void polygon::draw (const vertex& center, const rgbcolor& color, bool border) const {
     DEBUGF ('d', this << "(" << center << "," << color << ")");
     glBegin (GL_POLYGON);
     glEnable(GL_LINE_SMOOTH);
     glColor3ubv (color.ubvec);
 
-   for(auto p: vertices)glVertex2f (p.xpos+center.xpos, p.ypos+center.ypos);
-   
-   glEnd();
-   if(b == true){ 
-         glLineWidth(window::thick);
-         glBegin(GL_LINES);
-           glEnable(GL_LINE_SMOOTH);
-          
-           glColor3ubv (window::scolor.ubvec);
-         for(auto p: vertices){
-         glVertex2d (p.xpos+center.xpos, p.ypos+center.ypos);
-         }
-         
-         glEnd();
+    for(auto vert : vertices) {
+        glVertex2f (vert.xpos + center.xpos, vert.ypos + center.ypos);
+    }
+    glEnd();
+    if(border == true){ 
+        glLineWidth(window::thick);
+        glBegin(GL_LINES);
+        glEnable(GL_LINE_SMOOTH);
         
+        glColor3ubv (window::scolor.ubvec);
+        for(auto vert : vertices){
+            glVertex2d (vert.xpos + center.xpos, vert.ypos + center.ypos);
+        }
+        glEnd();  
    }
-
 }
 
 void shape::show (ostream& out) const {

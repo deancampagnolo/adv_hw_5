@@ -1,4 +1,5 @@
-// $Id: graphics.h,v 1.9 2014-05-15 16:42:55-07 - - $
+//dcampagn - Dean Campagnolo
+//aswoiski - Aaron Swoiskin
 
 #ifndef __GRAPHICS_H__
 #define __GRAPHICS_H__
@@ -14,16 +15,14 @@ using namespace std;
 #include "interp.h"
 
 class object {
-friend class window;
+    friend class window;
+    friend class mouse;
+    friend class object;
 private:
     shared_ptr<shape> pshape;
     vertex center;
     rgbcolor color;
-    //rgbcolor bordercolor = rgbcolor (255,   0,   0);
-    //bool bor = false;
-    //GLfloat thickness = 4;
 public:
-    // Default copiers, movers, dtor all OK.
     object( shared_ptr <shape> a, vertex& c, rgbcolor& col, bool bor);
     void draw() { pshape->draw (center, color,bor); }
     void move (GLfloat delta_x, GLfloat delta_y, int w, int h) {
@@ -31,23 +30,16 @@ public:
         GLfloat he = h;
         if(center.xpos >= wi){
              while(center.xpos != 0.0) center.xpos-= center.xpos;
-            //center.xpos = 1;
-            //cout<<" past width"<< endl;
         }else if(center.xpos < 0.0){
                    while(center.xpos != wi) center.xpos+= center.xpos;
-                   //center.xpos = wi-10;
-                   //cout<<" before x 0"<< endl;
         }
         if(center.ypos >= he){
             center.ypos = 1;
-            cout<<"before y 0"<< endl;
         }else if(center.ypos < 0.0){
                   center.ypos = he-10;
-                  cout<<"after height bad"<< endl;
         }
         center.xpos += delta_x;
         center.ypos += delta_y;
-        cout<<"passes stress"<< endl;
     }
 public:
        bool bor;
@@ -73,8 +65,6 @@ class window {
     friend class mouse;
     friend class object;
 private:
-   
-   
     static int moveint;
     static int width;         // in pixels
     static int height;        // in pixels
@@ -99,14 +89,10 @@ public:
     static void setmove (int move_) {moveint = move_;}
     static void setthick (const GLfloat& g) {thick = g;}
     static void setscolor (const rgbcolor& s) {scolor = s;}
-   // static int rwidth() {return width;}
-   // static int rheight() {return height;}
-   
     static void main();
 public:
-       static rgbcolor scolor;
-        static GLfloat thick;
-      // static bool bor;
+    static rgbcolor scolor;
+    static GLfloat thick;
 };
 
 #endif

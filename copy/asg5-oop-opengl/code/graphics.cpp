@@ -1,4 +1,5 @@
-// $Id: graphics.cpp,v 1.6 2019-05-15 18:02:12-07 - - $
+// dcampagn - Dean Campagnolo
+// aswoiski - Aaron Swoiskin
 
 #include <iostream>
 using namespace std;

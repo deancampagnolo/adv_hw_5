@@ -62,7 +62,7 @@ void window::display() {
     if(cur == window::selected_obj){
         object.bor = true;
     }else{
-          object.bor = false;
+        object.bor = false;
     }
     object.draw();
     cur+=1;
