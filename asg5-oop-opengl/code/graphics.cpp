@@ -49,7 +49,7 @@ void object::move (GLfloat delta_x, GLfloat delta_y, int w, int h) {
     } else if (center.ypos < 0.0){
                 center.ypos = g_h;
     }
-
+}
     void mouse::state (int button, int state) {
     switch (button) {
     case GLUT_LEFT_BUTTON: left_state = state; break;
