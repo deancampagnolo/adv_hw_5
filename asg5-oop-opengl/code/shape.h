@@ -35,16 +35,6 @@ struct vertex {GLfloat xpos; GLfloat ypos; };
 using vertex_list = vector<vertex>;
 using shape_ptr = shared_ptr<shape>; 
 
-//map to be used in interp for text
-static unordered_map<string,void*> fontcode {
-    {"Fixed-8x13"    , GLUT_BITMAP_8_BY_13       },
-    {"Fixed-9x15"    , GLUT_BITMAP_9_BY_15       },
-    {"Helvetica-10"  , GLUT_BITMAP_HELVETICA_10  },
-    {"Helvetica-12"  , GLUT_BITMAP_HELVETICA_12  },
-    {"Helvetica-18"  , GLUT_BITMAP_HELVETICA_18  },
-    {"Times-Roman-10", GLUT_BITMAP_TIMES_ROMAN_10},
-    {"Times-Roman-24", GLUT_BITMAP_TIMES_ROMAN_24},
-};
 //
 // Abstract base class for all shapes in this system.
 //
