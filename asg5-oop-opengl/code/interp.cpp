@@ -120,6 +120,7 @@ shape_ptr interpreter::make_circle (param begin, param end) {
 }
 // the triangles
 shape_ptr interpreter::make_triangle (param begin, param end){
+    /*
     if (end - begin != 6) throw runtime_error ("syntax error");
     vertex_list points;
     auto itor = begin;
@@ -141,13 +142,14 @@ shape_ptr interpreter::make_triangle (param begin, param end){
         vert.xpos -= x_avg;
         vert.ypos -= y_avg;
     }
+    */
+    return interpreter::make_polygon(begin, end);
 
-    return make_shared<triangle> (points);
+    //return make_shared<triangle> (points);
 }
 //diamond
 shape_ptr interpreter::make_diamond (param begin, param end) {
 DEBUGF ('f', range (begin, end));
-
 return make_shared<diamond> (from_string<GLfloat> (begin[0]), from_string<GLfloat> (begin[1]));
 }
 
@@ -158,36 +160,28 @@ shape_ptr interpreter::make_equilateral (param begin, param end) {
 }
 shape_ptr interpreter::make_polygon (param begin, param end) {
     DEBUGF ('f', range (begin, end));
-    vertex_list polyPoints;
-    //insert the vectors from the front
-    auto itor = begin;
-    //unsigned long int i = 1;
-    //adding all vector cooridinates to vector list
-    float y = 0.0, x = 0.0, total = 0.0;
-    while(itor != end){
-        
-        x += from_string<GLfloat> (*itor);
-        itor++;
-        y += from_string<GLfloat> (*itor);
-        if(itor == end) throw runtime_error(" incorrect number of vectors");
-        // vertex ass = new vertex( x , y );
-        total += 1.0;
-        itor++;
-        
-    }
-    x= x/total;
-    y= y/total;
-    itor = begin;
-    while(itor != end){
+    vertex_list points;
+    float x_sum = 0.0, y_sum = 0.0, total = 0.0;
+    while(begin != end){
         vertex temp;
-        temp.xpos = from_string<GLfloat> (*itor) - x;
-        itor++;
-        temp.ypos = from_string<GLfloat> (*itor) - y;
-        
-        polyPoints.push_back(temp);
-        itor++;
+        x_sum += from_string<GLfloat> (*itor);
+        temp.xpos = from_string<GLfloat> (*itor);
+        ++itor;
+        y_sum += from_string<GLfloat> (*itor);
+        temp.ypos = from_string<GLfloat> (*itor);
+        ++itor;
+        total += 1.0;
+        points.push_back(temp);
     }
-    return make_shared<polygon> (polyPoints);
+    int x_avg = x_sum/total;
+    int y_avg = y_sum/total;
+
+    for (vertex vert : points) {
+        vert.xpos -= x_avg;
+        vert.ypos -= y_avg;
+    }
+
+    return make_shared<polygon> (points);
 }
 
 shape_ptr interpreter::make_rectangle (param begin, param end) {
