@@ -166,20 +166,6 @@ DEBUGF ('f', range (begin, end));
 return make_shared<diamond> (from_string<GLfloat> (begin[0]), from_string<GLfloat> (begin[1]));
 }
 
-//right triangles
-shape_ptr interpreter::make_righttriangle (param begin, param end) {
-DEBUGF ('f', range (begin, end));
-
-return make_shared<right_triangle> (from_string<GLfloat> (begin[0]), from_string<GLfloat> (begin[1]));
-}
-
-//isosceles triangle
-shape_ptr interpreter::make_isosceles (param begin, param end) {
-DEBUGF ('f', range (begin, end));
-
-return make_shared<isosceles> (from_string<GLfloat> (begin[0]), from_string<GLfloat> (begin[1]));
-}
-
 //equilateral triangle
 shape_ptr interpreter::make_equilateral (param begin, param end) {
     DEBUGF ('f', range (begin, end));
