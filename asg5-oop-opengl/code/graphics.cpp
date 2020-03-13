@@ -148,12 +148,14 @@ void window::keyboard (GLubyte key, int x, int y) {
         window::objects[window::selected_obj].move(window::moveint,0,window::width, window::height);
         break;
     case 'N': case 'n': case SPACE: case TAB:
+        window::selected_obj = (window::selected_obj + 1) % window::objects.size();
         break;
     case 'P': case 'p': case BS:
+        window::selected_obj = (window::selected_obj + window::objects.size() - 1) % window::objects.size();
         break;
     case '0': case '1': case '2': case '3': case '4':
     case '5': case '6': case '7': case '8': case '9':
-        window::selected_obj =key-'0'; 
+        window::selected_obj = key-'0'; 
         break;
     default:
         cerr << unsigned (key) << ": invalid keystroke" << endl;
