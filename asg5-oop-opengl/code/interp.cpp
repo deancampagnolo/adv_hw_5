@@ -99,16 +99,12 @@ shape_ptr interpreter::make_shape (param begin, param end) {
 
 shape_ptr interpreter::make_text (param begin, param end) {
     DEBUGF ('f', range (begin, end));
-    auto itor = fontcode.find(begin[0]);
-    auto isec = begin;
-    isec++;
-    //iterate through the vector to get the strings
-    //then parse it into the shared pointer
-    //that will be retuend.
+    auto myFont = fontcode.find(begin[0])->second;
+    ++begin;
     string words = "";
-    while(isec != end){
-        words+=(*isec + " ");
-        isec++;
+    while(begin != end){
+        words.push_back(*begin + " ");
+        ++begin;
     }
     return make_shared<text> (itor->second, words);
 }
