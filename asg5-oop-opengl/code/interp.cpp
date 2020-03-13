@@ -51,8 +51,10 @@ void interpreter::do_define (param begin, param end) {
    cout << "define" << endl;
    DEBUGF ('f', range (begin, end));
    string name = *begin;
-   objmap.emplace (name, make_shape (++begin, end));
-   
+   shape_ptr = make_shape (++begin, end);
+   objmap.emplace (name, shape_ptr);
+   object the_object(name, pointer);
+   window::push_back(the_object);
 }
 
 
@@ -110,6 +112,7 @@ shape_ptr interpreter::make_rectangle (param begin, param end) {
 
 shape_ptr interpreter::make_square (param begin, param end) {
    DEBUGF ('f', range (begin, end));
-   return make_shared<square> (GLfloat());
+   GLfloat width = std::strtof((*begin).c_str(), 0);
+   return make_shared<square> (width);
 }
 
