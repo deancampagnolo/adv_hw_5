@@ -63,7 +63,7 @@ square::square (GLfloat width): rectangle (width, width) {
 
 void text::draw (const vertex& center, const rgbcolor& color, bool) const {
     DEBUGF ('d', this << "(" << center << ",");
-    
+    //FIXME
     glColor3ubv(color.ubvec);
     glRasterPos2f (center.xpos, center.ypos);
     for (auto ch: textdata) glutBitmapCharacter (glut_bitmap_font, ch);
@@ -72,6 +72,7 @@ void text::draw (const vertex& center, const rgbcolor& color, bool) const {
 
 void ellipse::draw (const vertex& center, const rgbcolor& color, bool b) const {
     DEBUGF ('d', this << "(" << center << "," << color << ")");
+    //FIXME
     glBegin (GL_POLYGON);
    glEnable (GL_LINE_SMOOTH);
    glColor3ubv (color.ubvec);
@@ -100,6 +101,7 @@ void ellipse::draw (const vertex& center, const rgbcolor& color, bool b) const {
 }
 
 void polygon::draw (const vertex& center, const rgbcolor& color, bool b) const {
+    //FIXME
     DEBUGF ('d', this << "(" << center << "," << color << ")");
     glBegin (GL_POLYGON);
     glEnable(GL_LINE_SMOOTH);
@@ -148,3 +150,4 @@ ostream& operator<< (ostream& out, const shape& obj) {
     obj.show (out);
     return out;
 }
+

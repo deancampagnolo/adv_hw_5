@@ -127,7 +127,7 @@ class polygon: public shape {
 //triangle classes
 class triangle: public polygon {
     public:
-        triangle (const vertex_list& v);
+        triangle (const vertex_list& vertices);
 };
 
 class equilateral: public triangle {
