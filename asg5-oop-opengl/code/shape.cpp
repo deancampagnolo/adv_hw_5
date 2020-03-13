@@ -10,26 +10,6 @@ using namespace std;
 #include "util.h"
 #include "math.h"
 
-static unordered_map<void*,string> fontname {
-    {GLUT_BITMAP_8_BY_13       , "Fixed-8x13"    },
-    {GLUT_BITMAP_9_BY_15       , "Fixed-9x15"    },
-    {GLUT_BITMAP_HELVETICA_10  , "Helvetica-10"  },
-    {GLUT_BITMAP_HELVETICA_12  , "Helvetica-12"  },
-    {GLUT_BITMAP_HELVETICA_18  , "Helvetica-18"  },
-    {GLUT_BITMAP_TIMES_ROMAN_10, "Times-Roman-10"},
-    {GLUT_BITMAP_TIMES_ROMAN_24, "Times-Roman-24"},
-};
-
-static unordered_map<string,void*> fontcode {
-   {"Fixed-8x13"    , GLUT_BITMAP_8_BY_13       },
-   {"Fixed-9x15"    , GLUT_BITMAP_9_BY_15       },
-   {"Helvetica-10"  , GLUT_BITMAP_HELVETICA_10  },
-   {"Helvetica-12"  , GLUT_BITMAP_HELVETICA_12  },
-   {"Helvetica-18"  , GLUT_BITMAP_HELVETICA_18  },
-   {"Times-Roman-10", GLUT_BITMAP_TIMES_ROMAN_10},
-   {"Times-Roman-24", GLUT_BITMAP_TIMES_ROMAN_24},
-};
-
 ostream& operator<< (ostream& out, const vertex& where) {
     out << "(" << where.xpos << "," << where.ypos << ")";
     return out;

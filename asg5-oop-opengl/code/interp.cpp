@@ -99,7 +99,7 @@ shape_ptr interpreter::make_shape (param begin, param end) {
 
 shape_ptr interpreter::make_text (param begin, param end) {
     DEBUGF ('f', range (begin, end));
-    auto the_font = shape.fontcode.find(begin[0])->second;
+    auto the_font = fontcode.find(begin[0])->second;
     ++begin;
     string words = "";
     while(begin != end){
@@ -187,7 +187,7 @@ shape_ptr interpreter::make_polygon (param begin, param end) {
 shape_ptr interpreter::make_rectangle (param begin, param end) {
     DEBUGF ('f', range (begin, end));
     return make_shared<rectangle> (from_string<GLfloat> (begin[0]),
-                                    from_string<GLfloat> (begin[1]));
+                                from_string<GLfloat> (begin[1]));
 }
 
 shape_ptr interpreter::make_square (param begin, param end) {
