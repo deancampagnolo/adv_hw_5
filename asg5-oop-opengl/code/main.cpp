@@ -79,6 +79,7 @@ void scan_options (int argc, char** argv) {
 // Main function.  Iterate over files if given, use cin if not.
 //
 int main (int argc, char** argv) {
+   cout<<"hello world"<<endl;
    sys_info::execname (argv[0]);
    scan_options (argc, argv);
    vector<string> args (&argv[optind], &argv[argc]);
