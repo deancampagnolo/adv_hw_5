@@ -33,8 +33,6 @@ void object::draw() {
 void object::move (GLfloat delta_x, GLfloat delta_y, int w, int h) {
     center.xpos += delta_x;
     center.ypos += delta_y;
-    center.xpos += delta_x;
-    center.ypos += delta_y;
     
     GLfloat g_w = w;
     GLfloat g_h = h;
@@ -47,7 +45,7 @@ void object::move (GLfloat delta_x, GLfloat delta_y, int w, int h) {
     if (center.ypos > g_h){
         center.ypos = 0.0;
     } else if (center.ypos < 0.0){
-                center.ypos = g_h;
+        center.ypos = g_h;
     }
 }
     void mouse::state (int button, int state) {
@@ -98,13 +96,13 @@ void window::display() {
     glClear (GL_COLOR_BUFFER_BIT);
     size_t num = 0;
     for (auto& object: window::objects) {
-    if(num == window::selected_obj){
-        object.border = true;
-    }else{
-        object.border = false;
-    }
-    ++num;
-    object.draw();
+        if(num == window::selected_obj){
+            object.border = true;
+        }else{
+            object.border = false;
+        }
+        ++num;
+        object.draw();
     }
     
     mus.draw();

@@ -1,3 +1,6 @@
+// dcampagn - Dean Campagnolo
+// aswoiski - Aaron Swoiskin
+
 #include <unordered_map>
 #include <memory>
 #include <string>
@@ -19,7 +22,8 @@ unordered_map<string,interpreter::interpreterfn> interpreter::interp_map {
     {"moveby" , &interpreter::do_moveby },
 };
 
-unordered_map<string,interpreter::factoryfn> interpreter::factory_map {
+unordered_map<string,interpreter::factoryfn>
+interpreter::factory_map {
     {"text"     , &interpreter::make_text     },
     {"ellipse"  , &interpreter::make_ellipse  },
     {"circle"   , &interpreter::make_circle   },
@@ -27,8 +31,8 @@ unordered_map<string,interpreter::factoryfn> interpreter::factory_map {
     {"rectangle", &interpreter::make_rectangle},
     {"square"   , &interpreter::make_square   },
     {"triangle" , &interpreter::make_triangle },
-    {"equilateral" , &interpreter::make_equilateral },
-    {"diamond"   , &interpreter::make_diamond },
+    {"equilateral", &interpreter::make_equilateral },
+    {"diamond"  , &interpreter::make_diamond },
 };
 
 interpreter::shape_map interpreter::objmap;
@@ -74,10 +78,8 @@ void interpreter::do_moveby (param begin, param end) {
     if (end - begin != 1) throw runtime_error ("syntax error");
     int pmove = stoi(begin[0]);
     window::setmove(pmove);
-    
-    // change a variable in graphics that will change speed
-    // make a global variable
 }
+
 void interpreter::do_border (param begin, param end) {
     DEBUGF ('f', range (begin, end));
     if (end - begin != 2) throw runtime_error ("syntax error");
@@ -120,44 +122,19 @@ shape_ptr interpreter::make_circle (param begin, param end) {
 }
 // the triangles
 shape_ptr interpreter::make_triangle (param begin, param end){
-    /*
-    if (end - begin != 6) throw runtime_error ("syntax error");
-    vertex_list points;
-    auto itor = begin;
-    float y_sum = 0.0, x_sum = 0.0;
-    while(itor != end){
-        vertex temp;
-        temp.xpos = from_string<GLfloat> (*itor);
-        x_sum += from_string<GLfloat> (*itor);
-        ++itor;
-        temp.ypos = from_string<GLfloat> (*itor);
-        y_sum += from_string<GLfloat> (*itor);
-        ++itor; 
-        points.push_back(temp); 
-    }
-    int x_avg = x_sum/3;
-    int y_avg = y_sum/3;
-
-    for (auto vert : points) {
-        vert.xpos -= x_avg;
-        vert.ypos -= y_avg;
-    }
-    */
     return interpreter::make_polygon(begin, end);
-
-    //return make_shared<triangle> (points);
 }
-//diamond
+
 shape_ptr interpreter::make_diamond (param begin, param end) {
 DEBUGF ('f', range (begin, end));
 return make_shared<diamond> (from_string<GLfloat> (begin[0]), from_string<GLfloat> (begin[1]));
 }
 
-//equilateral triangle
 shape_ptr interpreter::make_equilateral (param begin, param end) {
     DEBUGF ('f', range (begin, end));
     return make_shared<equilateral> (from_string<GLfloat> (begin[0]));
 }
+
 shape_ptr interpreter::make_polygon (param begin, param end) {
     DEBUGF ('f', range (begin, end));
     vertex_list points;
