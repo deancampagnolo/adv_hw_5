@@ -1,5 +1,6 @@
 //dcampagn - Dean Campagnolo
 //aswoiski - Aaron Swoiskin
+
 #include <typeinfo>
 #include <unordered_map>
 using namespace std;
@@ -90,9 +91,9 @@ void ellipse::draw (const vertex& center, const rgbcolor& color, bool border) co
         glEnable(GL_LINE_SMOOTH);    
         glColor3ubv (window::scolor.ubvec);
         for (float theta = 0; theta < 2 * M_PI; theta += delta) {
-            float xposy = width * cos (theta) + center.xpos;
-            float yposy = height * sin (theta) + center.ypos;
-            glVertex2d (xposy, yposy);
+            float xpos = (width + window::getthick()) * cos (theta) + center.xpos;
+            float ypos = (height + window::getthick()) * sin (theta) + center.ypos;
+            glVertex2d (xpos, ypos);
         }   
         glEnd();
     }
@@ -115,7 +116,7 @@ void polygon::draw (const vertex& center, const rgbcolor& color, bool border) co
         
         glColor3ubv (window::scolor.ubvec);
         for(auto vert : vertices){
-            glVertex2d (vert.xpos + center.xpos, vert.ypos + center.ypos);
+            glVertex2d (vert.xpos + center.xpos + window::getthick(), vert.ypos + center.ypos + window::getthick());
         }
         glEnd();  
    }

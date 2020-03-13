@@ -72,6 +72,7 @@ public:
     static void setheight (int height_) { height = height_; }
     static void setmove (int move_) {moveint = move_;}
     static void setthick (const GLfloat& g) {thick = g;}
+    static GLfloat getthick () {return thick;}
     static void setscolor (const rgbcolor& s) {scolor = s;}
     static void main();
 public:

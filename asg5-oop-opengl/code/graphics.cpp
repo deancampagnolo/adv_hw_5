@@ -12,7 +12,7 @@ using namespace std;
 
 rgbcolor window::scolor = rgbcolor(255,0,0);
 GLfloat window::thick = 4;
-int window::moveint =4;
+int window::moveint = 4;
 int window::width = 640; // in pixels
 int window::height = 480; // in pixels
 vector<object> window::objects;

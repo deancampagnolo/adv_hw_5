@@ -84,10 +84,11 @@ void interpreter::do_border (param begin, param end) {
     DEBUGF ('f', range (begin, end));
     if (end - begin != 2) throw runtime_error ("syntax error");
     rgbcolor color {begin[0]};
-    GLfloat Dthick = from_string<GLfloat> (begin[1]);
-    window::setthick(Dthick);
+    GLfloat thick = from_string<GLfloat> (begin[1]);
+    window::setthick(thick);
     window::setscolor(color);
 }
+
 shape_ptr interpreter::make_shape (param begin, param end) {
     DEBUGF ('f', range (begin, end));
     string type = *begin++;
@@ -120,7 +121,7 @@ shape_ptr interpreter::make_circle (param begin, param end) {
     DEBUGF ('f', range (begin, end));
     return make_shared<circle> (from_string<GLfloat> (begin[0]));
 }
-// the triangles
+
 shape_ptr interpreter::make_triangle (param begin, param end){
     return interpreter::make_polygon(begin, end);
 }

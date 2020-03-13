@@ -1,3 +1,5 @@
+//dcampagn - Dean Camapgnolo
+//aswoiski - Aaron Swoiskin
 
 #ifndef __INTERP_H__
 #define __INTERP_H__
