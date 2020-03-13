@@ -1,4 +1,5 @@
-// $Id: shape.h,v 1.7 2014-06-05 16:11:09-07 - - $
+//dcampagn - Dean Camapgnolo
+//aswoiski - Aaron Swoiskin
 
 #ifndef __SHAPE_H__
 #define __SHAPE_H__
@@ -60,14 +61,13 @@ using shape_ptr = shared_ptr<shape>;
 
 class shape {
     friend ostream& operator<< (ostream& out, const shape&);
-    private:
+    protected:
+        inline shape(); // Only subclass may instantiate.
+    public:
         shape (const shape&) = delete; // Prevent copying.
         shape& operator= (const shape&) = delete; // Prevent copying.
         shape (shape&&) = delete; // Prevent moving.
         shape& operator= (shape&&) = delete; // Prevent moving.
-    protected:
-        inline shape(); // Only subclass may instantiate.
-    public:
         virtual ~shape() {}
         virtual void draw (const vertex&, const rgbcolor&, bool) const = 0;
         virtual void show (ostream&) const;

@@ -1,6 +1,5 @@
 //dcampagn - Dean Campagnolo
 //aswoiski - Aaron Swoiskin
-#include <cmath>
 #include <typeinfo>
 #include <unordered_map>
 #include <libgen.h>
