@@ -2,7 +2,6 @@
 //aswoiski - Aaron Swoiskin
 #include <typeinfo>
 #include <unordered_map>
-#include <libgen.h>
 using namespace std;
 #include "graphics.h"
 #include "shape.h"
@@ -62,7 +61,7 @@ square::square (GLfloat width): rectangle (width, width) {
     DEBUGF ('c', this);
 }
 
-void text::draw (const vertex& center, const rgbcolor& color, bool b) const {
+void text::draw (const vertex& center, const rgbcolor& color, bool) const {
     DEBUGF ('d', this << "(" << center << "," << b<< ")");
     
     glColor3ubv(color.ubvec);
@@ -102,22 +101,10 @@ void ellipse::draw (const vertex& center, const rgbcolor& color, bool b) const {
 
 void polygon::draw (const vertex& center, const rgbcolor& color, bool b) const {
     DEBUGF ('d', this << "(" << center << "," << color << ")");
-    //glColor3uv(color.ubvec);
-     glBegin (GL_POLYGON);
-     glEnable(GL_LINE_SMOOTH);
-   glColor3ubv (color.ubvec);
-   //constexpr GLfloat third = 1.0 / 3.0;
-  /* float total = 0.0;
-   float x = center.xpos, y = center.ypos;
-   for( auto a: vertices){
-        x += a.xpos;
-        y += a.ypos;
-        total+=1.0;
-   
-   } 
-   x = x/total;
-   y = y/total; 
-   */
+    glBegin (GL_POLYGON);
+    glEnable(GL_LINE_SMOOTH);
+    glColor3ubv (color.ubvec);
+
    for(auto p: vertices)glVertex2f (p.xpos+center.xpos, p.ypos+center.ypos);
    
    glEnd();
